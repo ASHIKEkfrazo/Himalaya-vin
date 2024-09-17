@@ -12,10 +12,43 @@ const Reports = () => {
     {
       title: 'SL.NO',
       dataIndex: 'key',
+      onHeaderCell: () => {
+        return {
+          style: {
+            backgroundColor: "#006768", // Set your desired background color
+            color: "#fff", // Optional: change text color
+            fontWeight: "bold", // Optional: make the text bold
+
+          },
+        };
+      },
+      onCell: () => {
+        return {
+          style: {
+            fontWeight: "500", // Set font weight for body cells
+          },
+        };
+      },
     },
     {
       title: 'Date',
       dataIndex: 'date',
+      onHeaderCell: () => {
+        return {
+          style: {
+            backgroundColor: "#006768", // Set your desired background color
+            color: "#fff", // Optional: change text color
+            fontWeight: "bold", // Optional: make the text bold
+          },
+        };
+      },
+      onCell: () => {
+        return {
+          style: {
+            fontWeight: "500", // Set font weight for body cells
+          },
+        };
+      },
       // sorter: {
       //   compare: (a, b) => a.chinese - b.chinese,
       //   multiple: 3,
@@ -24,6 +57,22 @@ const Reports = () => {
     {
       title: 'Order ID',
       dataIndex: 'Order',
+      onHeaderCell: () => {
+        return {
+          style: {
+            backgroundColor: "#006768", // Set your desired background color
+            color: "#fff", // Optional: change text color
+            fontWeight: "bold", // Optional: make the text bold
+          },
+        };
+      },
+      onCell: () => {
+        return {
+          style: {
+            fontWeight: "500", // Set font weight for body cells
+          },
+        };
+      },
       // sorter: {
       //   compare: (a, b) => a.math - b.math,
       //   multiple: 2,
@@ -32,6 +81,22 @@ const Reports = () => {
     {
       title: 'Person Incharge',
       dataIndex: 'person',
+      onHeaderCell: () => {
+        return {
+          style: {
+            backgroundColor: "#006768", // Set your desired background color
+            color: "#fff", // Optional: change text color
+            fontWeight: "bold", // Optional: make the text bold
+          },
+        };
+      },
+      onCell: () => {
+        return {
+          style: {
+            fontWeight: "500", // Set font weight for body cells
+          },
+        };
+      },
       // sorter: {
       //   compare: (a, b) => a.english - b.english,
       //   multiple: 1,
@@ -40,6 +105,22 @@ const Reports = () => {
     {
       title: 'Test Parameters',
       dataIndex: 'test',
+      onHeaderCell: () => {
+        return {
+          style: {
+            backgroundColor: "#006768", // Set your desired background color
+            color: "#fff", // Optional: change text color
+            fontWeight: "bold", // Optional: make the text bold
+          },
+        };
+      },
+      onCell: () => {
+        return {
+          style: {
+            fontWeight: "500", // Set font weight for body cells
+          },
+        };
+      },
       // sorter: {
       //   compare: (a, b) => a.english - b.english,
       //   multiple: 1,
@@ -48,6 +129,22 @@ const Reports = () => {
     {
       title: 'File',
       dataIndex: 'file',
+      onHeaderCell: () => {
+        return {
+          style: {
+            backgroundColor: "#006768", // Set your desired background color
+            color: "#fff", // Optional: change text color
+            fontWeight: "bold", // Optional: make the text bold
+          },
+        };
+      },
+      onCell: () => {
+        return {
+          style: {
+            fontWeight: "500", // Set font weight for body cells
+          },
+        };
+      },
       // sorter: {
       //   compare: (a, b) => a.english - b.english,
       //   multiple: 1,
@@ -57,6 +154,22 @@ const Reports = () => {
     {
       title: 'Action',
       dataIndex: 'action',
+      onHeaderCell: () => {
+        return {
+          style: {
+            backgroundColor: "#006768", // Set your desired background color
+            color: "#fff", // Optional: change text color
+            fontWeight: "500", // Optional: make the text bold
+          },
+        };
+      },
+      onCell: () => {
+        return {
+          style: {
+            fontWeight: "500", // Set font weight for body cells
+          },
+        };
+      },
       // sorter: {
       //   compare: (a, b) => a.english - b.english,
       //   multiple: 1,

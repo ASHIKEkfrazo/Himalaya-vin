@@ -25,15 +25,7 @@ font-size: 1rem !important;
     font-weight: none;
 
 }
-:where(.css-dev-only-do-not-override-m4timi).ant-menu-dark .ant-menu-item a{
-    color: #000;
-    font-weight: 500 !important;
-}
-:where(.css-dev-only-do-not-override-m4timi).ant-menu-dark .ant-menu-item-selected a{
-    color: #000 !important;
-    font-weight: 700 !important;
 
-}
 
 .ant-layout-sider{
     flex: 0 0 300px !important;
@@ -43,7 +35,6 @@ font-size: 1rem !important;
 :where(.css-dev-only-do-not-override-m4timi).ant-layout .ant-layout-sider{
     background:#e3ffff !important ;
 }
-
 
 :where(.css-m4timi).ant-menu-dark{
     background: none !important;
