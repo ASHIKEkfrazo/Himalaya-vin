@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+:where(.css-dev-only-do-not-override-m4timi).ant-table-wrapper .ant-table-thead >tr>th {
+  background: #006768 !important;
+  text-align: center !important;
+  color: #fff !important;
+}
+
+:where(.css-dev-only-do-not-override-m4timi).ant-table-wrapper .ant-table-cell {
+   text-align: center !important;
+   font-weight: 500 !important;
+}
