@@ -1,0 +1,56 @@
+.layout{
+    /* padding: 1rem; */
+}
+.nav-link{
+text-decoration: none;
+font-size: 1rem !important;
+}
+.sideNav{
+    height: 100vh;
+    padding: 1rem;
+    background-color: #E3FFFF;
+    ;
+    border: none;
+}
+
+:where(.css-dev-only-do-not-override-m4timi).ant-layout .ant-layout-sider-children{
+    box-sizing: content-box;
+}
+:where(.css-dev-only-do-not-override-m4timi).ant-menu-dark{
+    background-color: transparent;
+}
+:where(.css-dev-only-do-not-override-m4timi).ant-menu-dark .ant-menu-item-selected, :where(.css-dev-only-do-not-override-m4timi).ant-menu-dark>.ant-menu .ant-menu-item-selected {
+    background: none;
+    color: none;
+    font-weight: none;
+
+}
+:where(.css-dev-only-do-not-override-m4timi).ant-menu-dark .ant-menu-item a{
+    color: #000;
+    font-weight: 500;
+}
+:where(.css-dev-only-do-not-override-m4timi).ant-menu-dark .ant-menu-item-selected a{
+    color: #000 !important;
+    font-weight: 700;
+
+}
+
+.ant-layout-sider{
+    flex: 0 0 300px !important;
+    min-width: 200px !important;
+    max-width: 300px !important;
+}
+:where(.css-dev-only-do-not-override-m4timi).ant-layout .ant-layout-sider{
+    background:#e3ffff !important ;
+}
+
+:where(.css-dev-only-do-not-override-m4timi).ant-table-wrapper .ant-table-thead >tr>th{
+   background: #006768 !important;
+   text-align: center;
+   color: #fff;
+}
+
+:where(.css-dev-only-do-not-override-m4timi).ant-table-wrapper .ant-table-cell{
+    text-align: center;
+    font-weight: 500;
+}
