@@ -3,15 +3,25 @@ import { Modal, Input, DatePicker, Button, Upload } from 'antd';
 import { useForm, Controller } from 'react-hook-form';
 import { InboxOutlined } from '@ant-design/icons';
 import TextArea from 'antd/es/input/TextArea';
+import { reportPostApi } from '../Endpoints/reportApi';
 
 const { Dragger } = Upload;
-const ModalComponent = ({ title, open, cancel }) => {
+const ModalComponent = ({ title, open, cancel, setOpen }) => {
     const { handleSubmit, control, formState: { errors } } = useForm();
 
     // Submission function
     const onSubmit = (data) => {
-        console.log('Form data:', data);  // This should log your form data properly
+        const formData = new FormData();
+        formData.append('order_date', data.order_date);
+        formData.append('order_id', data.order_id);
+        formData.append('person_incharge', data.person_incharge);
+        formData.append('test_parameter', data.test_parameter);
+        if (data.file) {
+            formData.append('file', data.file);
+        }
+        reportPostApi(formData).then(res => cancel()).catch(err => console.log(err))
     };
+
 
     return (
         <Modal
@@ -27,7 +37,7 @@ const ModalComponent = ({ title, open, cancel }) => {
                 <div>
                     <label className='py-2 font-semibold'>Date</label>
                     <Controller
-                        name="date"
+                        name="order_date"
                         control={control}
                         rules={{ required: "Date is required" }}
                         render={({ field }) => (
@@ -39,8 +49,8 @@ const ModalComponent = ({ title, open, cancel }) => {
                             />
                         )}
                     />
-                    {errors.date && (
-                        <span style={{ color: 'red' }}>{errors.date.message}</span>
+                    {errors.order_date && (
+                        <span style={{ color: 'red' }}>{errors.order_date.message}</span>
                     )}
                 </div>
 
@@ -49,15 +59,15 @@ const ModalComponent = ({ title, open, cancel }) => {
                 <div>
                     <label className='py-2 font-semibold'>Order Id</label>
                     <Controller
-                        name="orderId"
+                        name="order_id"
                         control={control}
                         rules={{ required: "Order id is required" }}  // Validation rules
                         render={({ field }) => (
                             <Input {...field} placeholder="Order Id" type='number' />
                         )}
                     />
-                    {errors.orderId && (
-                        <span style={{ color: 'red' }}>{errors.orderId.message}</span>
+                    {errors.order_id && (
+                        <span style={{ color: 'red' }}>{errors.order_id.message}</span>
                     )}
                 </div>
 
@@ -65,7 +75,7 @@ const ModalComponent = ({ title, open, cancel }) => {
                 <div>
                     <label className='py-2 font-semibold'>Person Incharge</label>
                     <Controller
-                        name="personIncharge"
+                        name="person_incharge"
                         control={control}
                         rules={{
                             required: "Person Incharge is required",
@@ -78,15 +88,15 @@ const ModalComponent = ({ title, open, cancel }) => {
                             <Input {...field} placeholder="Person Incharge" />
                         )}
                     />
-                    {errors.personIncharge && (
-                        <span style={{ color: 'red' }}>{errors.personIncharge.message}</span>
+                    {errors.person_incharge && (
+                        <span style={{ color: 'red' }}>{errors.person_incharge.message}</span>
                     )}
                 </div>
 
                 <div>
                     <label className='py-2 font-semibold'>Test Parameters</label>
                     <Controller
-                        name="testParameters"
+                        name="test_parameter"
                         control={control}
                         rules={{
                             required: "Test Parameters is required",
@@ -99,8 +109,8 @@ const ModalComponent = ({ title, open, cancel }) => {
                             <TextArea {...field} placeholder="Test Parameters" />
                         )}
                     />
-                    {errors.testParameters && (
-                        <span style={{ color: 'red' }}>{errors.testParameters.message}</span>
+                    {errors.test_parameter && (
+                        <span style={{ color: 'red' }}>{errors.test_parameter.message}</span>
                     )}
                 </div>
                 <div>

@@ -1,17 +1,36 @@
-import React, { useState } from 'react'
-import { Table, Button } from 'antd';
-import { UploadOutlined, FilePdfOutlined, DeleteOutlined } from "@ant-design/icons";
+import React, { useEffect, useState } from 'react'
+import { Table, Button, Input } from 'antd';
+import { UploadOutlined, FileOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Modal }
   from
   "antd"
   ;
-
 import ModalComponent from "../Components/Modal"
+
+import { reportDataAPI, searchDataApi } from '../Endpoints/reportApi';
+import { RedoOutlined } from '@ant-design/icons';
+import { set } from 'react-hook-form';
+
 const Reports = () => {
+  const { Search } = Input;
+  const [reportData, setReportData] = useState([])
+  const [open, setOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState();
+  const [searchActive, setSearchActive] = useState(false);
+
+
+  const [pagination, setPagination] = useState({
+    current: 1,
+    pageSize: 10,
+    total: 0,
+    position: ["topRight"],
+    showSizeChanger: true,
+  })
+
   const columns = [
     {
       title: 'SL.NO',
-      dataIndex: 'key',
+      dataIndex: 'id',
       onHeaderCell: () => {
         return {
           style: {
@@ -21,6 +40,7 @@ const Reports = () => {
 
           },
         };
+
       },
       onCell: () => {
         return {
@@ -29,10 +49,11 @@ const Reports = () => {
           },
         };
       },
+      render: (index, item) => index
     },
     {
       title: 'Date',
-      dataIndex: 'date',
+      dataIndex: 'order_date',
       onHeaderCell: () => {
         return {
           style: {
@@ -56,7 +77,7 @@ const Reports = () => {
     },
     {
       title: 'Order ID',
-      dataIndex: 'Order',
+      dataIndex: 'order_id',
       onHeaderCell: () => {
         return {
           style: {
@@ -80,7 +101,7 @@ const Reports = () => {
     },
     {
       title: 'Person Incharge',
-      dataIndex: 'person',
+      dataIndex: 'person_incharge',
       onHeaderCell: () => {
         return {
           style: {
@@ -104,7 +125,7 @@ const Reports = () => {
     },
     {
       title: 'Test Parameters',
-      dataIndex: 'test',
+      dataIndex: 'test_parameter',
       onHeaderCell: () => {
         return {
           style: {
@@ -149,7 +170,15 @@ const Reports = () => {
       //   compare: (a, b) => a.english - b.english,
       //   multiple: 1,
       // },
-      render: () => <div className=""><FilePdfOutlined style={{ color: "red", fontSize: "1.2rem" }} /></div>
+      render: (item) => <div className="">
+        {
+          item ?
+            <a href={item} target='_blank'><FileOutlined style={{ color: "red", fontSize: "1.2rem" }} /></a>
+            : <div className="">No file</div>
+        }
+
+
+      </div>
     },
     {
       title: 'Action',
@@ -178,31 +207,104 @@ const Reports = () => {
 
     },
   ];
-  const data = [
-    {
-      key: '1',
-      date: '2024/09/12',
-      Order: 98,
-      person: 60,
-      test: 70,
-      file: "",
-      action: ""
-    },
 
-  ];
+
+  const initialReportData = () => {
+    reportDataAPI(pagination).then((res) => {
+      console.log(res)
+      const { results, page_size, total_count, total_pages } = res
+      setReportData(results)
+      setPagination((prev) => ({
+        ...prev,
+        pageSize: page_size,
+        total: total_count,
+      }))
+    }
+    ).catch(err => console.log(err))
+  }
+  console.log(reportData)
+
+  useEffect(() => {
+    if (searchActive) {
+      searchDataApi()
+    }
+    else {
+      initialReportData()
+    }
+  }, [pagination.current, pagination.pageSize])
+
+
+
+
   const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
+    console.log(pagination)
+    setPagination((prev) => ({
+      ...prev,
+      pageSize: pagination.pageSize,
+      current: pagination.current
+    }))
   };
-  const [open, setOpen] = useState(false)
+
+
+  const onChangeSearch = (e) => {
+    console.log(e)
+    const { value } = e.target
+    setSearchQuery(value)
+    if (value === "") {
+      onReset()
+    }
+  }
+
+  const handleSearch = () => {
+    searchDataApi(searchQuery, pagination).then(res => {
+      setSearchActive(true)
+      const { results, page_size, total_count, total_pages } = res
+      setReportData(results)
+      setPagination((prev) => ({
+        ...prev,
+        pageSize: page_size,
+        total: total_count,
+      }))
+    }
+    ).catch(err => console.log(err))
+  }
+
+  const onReset = () => {
+    setSearchQuery('');
+    initialReportData()
+    setSearchActive(false)
+  };
+
   return (
     <div className=''>
-      <ModalComponent open={open} cancel={() => setOpen(false)} title={"Upload Report"} />
+      <ModalComponent open={open} setOpen={setOpen} cancel={() => setOpen(false)} title={"Upload Report"} />
       <div className="px-5 py-2 text-2xl font-bold">Reports</div>
-      <div className="px-5 py-2 flex flex-col gap-5">
-        <div className="flex justify-end">
+      <div className="px-5 py-2 flex flex-col gap-5 ">
+        <div className="flex justify-between items-center pt-2">
+          <div className=" flex gap-1">
+
+            <Search
+              placeholder="Search"
+              size="large"
+              className='w-[400px]'
+              onChange={onChangeSearch}
+              onSearch={handleSearch}
+
+            />
+            {
+              <Button
+                size="large"
+                onClick={onReset}
+                style={{ rotate: '180deg' }}
+                icon={<RedoOutlined />}
+              ></Button>
+
+            }
+          </div>
+
           <div className='bg-[#B2ECEC] font-bold text-sm px-3 py-2 cursor-pointer rounded-md' onClick={() => setOpen(true)}> Upload File</div>
         </div>
-        <Table columns={columns} dataSource={data} onChange={onChange} style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", borderRadius: "10px" }} />
+        <Table columns={columns} dataSource={reportData} onChange={onChange} style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", padding: "0.5rem", borderRadius: "10px" }} pagination={pagination} />
       </div>
     </div>
   )
