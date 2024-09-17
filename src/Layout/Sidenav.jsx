@@ -99,12 +99,12 @@ const Sidenav = () => {
           </Menu.Item>
 
           {/* Logout Menu Item */}
-          <Menu.Item key="logout" className="bg-white shadow-lg" >
+          <Menu.Item key="logout" className="bg-white shadow-lg" onClick={showModal}>
             <div to="/personal" className="p-3 text-decoration-none">
               <LogoutOutlined
                 style={{ fontSize: "1.2rem", color: "#000" }}
               />
-              <span className=" cursor-pointer text-black font-bold" onClick={showModal}>
+              <span className=" cursor-pointer text-black font-bold" >
                 Logout
               </span>
             </div>
