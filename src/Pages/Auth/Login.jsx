@@ -45,7 +45,7 @@ const Login = () => {
       {contextHolder}
 
       <div className='flex justify-center items-center h-screen bg-[#e3ffff] font-serif'>
-        <div className="shadow-lg h-full max-h-[60%] w-full max-w-[500px] flex rounded-3xl  bg-white">
+        <div className="shadow-lg h-full max-h-[500px] w-full max-w-[500px] flex rounded-3xl  bg-white">
           {/* <div className="bg-login-bg bg-cover bg-no-repeat rounded-3xl  w-1/2 bg-right"></div> */}
           <div className="w-full h-full flex justify-center items-center ">
             <div className="w-3/4 h-full flex justify-center items-center flex-col gap-4">

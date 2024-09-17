@@ -26,7 +26,7 @@ function App() {
       ]
     },
     {
-      path: "/login",
+      path: "login",
       element: <Login />,
     },
     //   {
