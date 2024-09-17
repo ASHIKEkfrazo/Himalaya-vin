@@ -3,6 +3,7 @@ import Reports from "./Pages/Reports";
 import Layout from "./Outlet/Layout";
 import Personal from "./Pages/PersonalAI"
 import Login from "./Pages/Auth/Login";
+import NotFound from "./Pages/NotFound";
 
 function App() {
   const router = createBrowserRouter([
@@ -29,10 +30,11 @@ function App() {
       path: "login",
       element: <Login />,
     },
-    //   {
-    //   path: "/resetPassword",
-    //   element: <ResetPassword />,
-    // },
+    {
+      path: "*",
+      element: <NotFound />,
+    },
+
 
   ]);
 

@@ -277,7 +277,7 @@ const Reports = () => {
 
   return (
     <div className=''>
-      <ModalComponent open={open} setOpen={setOpen} cancel={() => setOpen(false)} title={"Upload Report"} />
+      <ModalComponent open={open} setOpen={setOpen} cancel={() => { setOpen(false), onReset() }} title={"Upload Report"} />
       <div className="px-5 py-2 text-2xl font-bold">Reports</div>
       <div className="px-5 py-2 flex flex-col gap-5 ">
         <div className="flex justify-between items-center pt-2">
