@@ -2,11 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-:where(.css-dev-only-do-not-override-m4timi).ant-menu-dark .ant-menu-item a {
-    color: #000;
-    font-weight: 500 !important;
-  }
-  :where(.css-dev-only-do-not-override-m4timi).ant-menu-dark .ant-menu-item-selected a {
-    color: #000 !important;
-    font-weight: 700 !important;
-  }

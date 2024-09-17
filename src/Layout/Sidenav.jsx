@@ -73,7 +73,7 @@ const Sidenav = () => {
           >
             <NavLink to="/" className="p-3 text-decoration-none">
               <BarChartOutlined style={{ fontSize: "1.2rem", color: "#000" }} />
-              <span className="label" style={{ color: currentPage === "personal" ? "#000" : "#000" }}>
+              <span className="label" style={{ color: currentPage === "reports" ? "#000" : "#000", fontWeight: currentPage === "reports" ? "700" : "500" }}>
                 Reports
               </span>
             </NavLink>
@@ -92,7 +92,7 @@ const Sidenav = () => {
               <CodepenCircleOutlined
                 style={{ fontSize: "1.2rem", color: "#000" }}
               />
-              <span className="label" style={{ color: currentPage === "personal" ? "#000" : "#000" }}>
+              <span className="label" style={{ color: currentPage === "personal" ? "#000" : "#000", fontWeight: currentPage === "personal" ? "700" : "500" }}>
                 Personal AI
               </span>
             </NavLink>
