@@ -35,6 +35,9 @@ font-size: 1rem !important;
 :where(.css-dev-only-do-not-override-m4timi).ant-layout .ant-layout-sider{
     background:#e3ffff !important ;
 }
+:where(.css-m4timi).ant-layout .ant-layout-sider{
+    background:#e3ffff !important ;
+}
 
 :where(.css-m4timi).ant-menu-dark{
     background: none !important;
