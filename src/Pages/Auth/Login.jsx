@@ -23,11 +23,10 @@ const Login = () => {
   const onSubmit = (data) => {
     loginApi(data)
       .then((res) => {
-        // Use openNotification with the success message
         openNotification(res?.data?.message || 'Successfully logged in!', 'success');
+        localStorage.setItem("login", true)
         if (res?.data?.message) {
           setTimeout(() => {
-
             navigate('/');
           }, [1000])
         }
@@ -35,7 +34,7 @@ const Login = () => {
       .catch((err) => {
         // Use openNotification with the error message
         openNotification(err?.response?.data?.error || 'Login failed.', 'error');
-        // console.log(err)
+        // //console.log(err)
       });
   };
 

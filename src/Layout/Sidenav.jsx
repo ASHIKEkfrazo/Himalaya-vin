@@ -30,6 +30,11 @@ const Sidenav = () => {
     setIsModalOpen(false);
   };
 
+  const handleLogout = () => {
+    localStorage.clear()
+    navigate("/login")
+  }
+
   return (
     <>
       {/* Logout Confirmation Modal */}
@@ -40,7 +45,7 @@ const Sidenav = () => {
         <div className="flex justify-end py-3">
           <div
             className="bg-red-600 w-25 text-center py-2 rounded-md text-white font-bold cursor-pointer"
-            onClick={() => navigate("/login")}
+            onClick={() => handleLogout()}
           >
             Logout
           </div>
