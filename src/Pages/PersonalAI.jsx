@@ -3,6 +3,7 @@ import { Input } from 'antd';
 import { ThreeCircles } from "react-loader-spinner"
 import { SmileOutlined, FilePdfOutlined } from "@ant-design/icons";
 import { useState, useEffect } from 'react';
+import { getChatData, postMessage } from '../Endpoints/personalAi';
 
 const Personal = () => {
 
@@ -13,7 +14,6 @@ const Personal = () => {
 
   const chatResponseData = [
     {
-      "id": 1,
       heading: "Response 1",
       para: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, voluptatum!",
       Link: ""
@@ -44,26 +44,53 @@ const Personal = () => {
     setLoading(true)
     setChatData((prev) => [...prev, { inputData, chatResponseData: null }]);
 
-    // After 2 seconds, update the same object with chatResponseData
-    setTimeout(() => {
-      setChatData((prev) => {
-        // Find the last added object (inputData only)
-        const updatedChatData = [...prev];
-        const lastIndex = updatedChatData.length - 1;
+    postMessage(inputData).then((response) => {
+      console.log(response)
+      // setChatData((prev) => {
+      //   // Find the last added object (inputData only)
+      //   const updatedChatData = [...prev];
+      //   const lastIndex = updatedChatData.length - 1;
 
-        // Update the last object with chatResponseData
-        updatedChatData[lastIndex] = {
-          ...updatedChatData[lastIndex],
-          chatResponseData
-        };
+      //   // Update the last object with chatResponseData
+      //   updatedChatData[lastIndex] = {
+      //     ...updatedChatData[lastIndex],
+      //     chatResponseData
+      //   };
 
-        return updatedChatData;
-      });
+      //   return updatedChatData;
+      // });
 
       setLoading(false);
       setInputData(null);
-    }, 2000);
+    }
+    ).catch(
+      (err) => console.log(err)
+    )
+
+
+
+    // // After 2 seconds, update the same object with chatResponseData
+    // setTimeout(() => {
+    //   setChatData((prev) => {
+    //     // Find the last added object (inputData only)
+    //     const updatedChatData = [...prev];
+    //     const lastIndex = updatedChatData.length - 1;
+
+    //     // Update the last object with chatResponseData
+    //     updatedChatData[lastIndex] = {
+    //       ...updatedChatData[lastIndex],
+    //       chatResponseData
+    //     };
+
+    //     return updatedChatData;
+    //   });
+
+    //   setLoading(false);
+    //   setInputData(null);
+    // }, 2000);
   }
+
+
 
 
 
