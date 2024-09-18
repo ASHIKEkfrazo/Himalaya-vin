@@ -49,7 +49,9 @@ const Reports = () => {
           },
         };
       },
-      render: (index, item) => index
+      render: (text, record, index) => {
+        return index + 1;
+      }
     },
     {
       title: 'Date',

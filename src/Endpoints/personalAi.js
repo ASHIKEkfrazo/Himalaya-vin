@@ -3,7 +3,7 @@ import { apiCall } from "../API/API"
 
 export const postMessage = async (inputdata) => {
     try {
-        const response = await apiCall.post("pdfquery/", inputdata)
+        const response = await apiCall.post("pdfquery/", {"query":inputdata})
         return response
     } catch (error) {
         console.log(error, "ERROR DURING SENDING CHAT MESSAGE")

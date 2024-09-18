@@ -12,26 +12,26 @@ const Personal = () => {
   const [chatData, setChatData] = useState([]);
   const [loading, setLoading] = useState(false)
 
-  const chatResponseData = [
-    {
-      heading: "Response 1",
-      para: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, voluptatum!",
-      Link: ""
-    },
-    {
-      "id": 2,
-      heading: "Response 2",
-      para: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, voluptatum!",
-      Link: ""
-    },
-    {
-      "id": 3,
-      heading: "Response 3",
-      para: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, voluptatum!",
-      Link: ""
-    },
+  // const chatResponseData = [
+  //   {
+  //     heading: "Response 1",
+  //     para: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, voluptatum!",
+  //     Link: ""
+  //   },
+  //   {
+  //     "id": 2,
+  //     heading: "Response 2",
+  //     para: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, voluptatum!",
+  //     Link: ""
+  //   },
+  //   {
+  //     "id": 3,
+  //     heading: "Response 3",
+  //     para: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, voluptatum!",
+  //     Link: ""
+  //   },
 
-  ]
+  // ]
 
   const handleChange = (e) => {
     const { value } = e.target
@@ -46,25 +46,28 @@ const Personal = () => {
 
     postMessage(inputData).then((response) => {
       console.log(response)
-      // setChatData((prev) => {
-      //   // Find the last added object (inputData only)
-      //   const updatedChatData = [...prev];
-      //   const lastIndex = updatedChatData.length - 1;
+      const chatResponseData =  [response.data]
+      console.log(chatResponseData)
 
-      //   // Update the last object with chatResponseData
-      //   updatedChatData[lastIndex] = {
-      //     ...updatedChatData[lastIndex],
-      //     chatResponseData
-      //   };
+      setChatData((prev) => {
+        // Find the last added object (inputData only)
+        const updatedChatData = [...prev];
+        const lastIndex = updatedChatData.length - 1;
 
-      //   return updatedChatData;
-      // });
+        // Update the last object with chatResponseData
+        updatedChatData[lastIndex] = {
+          ...updatedChatData[lastIndex],
+          chatResponseData
+        };
+        return updatedChatData;
+      });
 
       setLoading(false);
       setInputData(null);
     }
     ).catch(
       (err) => console.log(err)
+
     )
 
 
@@ -136,13 +139,13 @@ const Personal = () => {
                                     {
                                       item.chatResponseData?.map(item =>
                                         <>
-                                          <h6 className='font-bold'>{item.id}.{item.heading}</h6>
-                                          <p className='font-semibold'>{item.para}</p>
+                                          {/* <h6 className='font-bold'>{item.id}.{item.}</h6> */}
+                                          <p className='font-semibold'>{item.summary}</p>
                                           <div className=" flex gap-2">
-                                            <a href={item.Link}>
+                                            {/* <a href={item.Link}>
                                               <FilePdfOutlined style={{ color: "red", fontSize: "1rem" }} />
-                                            </a>
-                                            <span className='font-semibold'>Download Pdf</span>
+                                            </a> */}
+                                            <span className='font-semibold flex gap-2'><FilePdfOutlined style={{ color: "red", fontSize: "1rem" }} />{item.most_relevant_pdf}</span>
                                           </div>
                                         </>
 
@@ -184,9 +187,9 @@ const Personal = () => {
                     <h6>How can i help you?</h6>
                     <p>Ask Questions</p>
                     <div className="flex gap-3">
-                      <p className='p-1 bg-gray-200 rounded-lg'>Lorem ipsum</p>
-                      <p className='p-1 bg-gray-200 rounded-lg'>Lorem ipsum</p>
-                      <p className='p-1 bg-gray-200 rounded-lg'>Lorem ipsum</p>
+                      <p className='p-1 bg-gray-200 rounded-lg'>Ask anything?</p>
+                      <p className='p-1 bg-gray-200 rounded-lg'>Information about Himalaya</p>
+                      <p className='p-1 bg-gray-200 rounded-lg'>What is pdf ?</p>
 
                     </div>
                   </div>
