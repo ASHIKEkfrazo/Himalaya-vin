@@ -12,26 +12,28 @@ const Personal = () => {
   const [chatData, setChatData] = useState([]);
   const [loading, setLoading] = useState(false)
 
-  const chatResponseData = [
+ const chatResponseData = [
     {
+      "id": 1,
       heading: "Response 1",
-      para: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, voluptatum!",
+      para: "Turmeric is a golden-orange spice derived from the rhizome of a plant related to ginger, widely used in Asian cooking for its color, flavor, and nutritional benefits. It has also been used in traditional medicine in China and India for centuries. According to Mary-Eve Brown, an oncology dietitian at Johns Hopkins, turmeric's active compound, curcumin, possesses antioxidant and anti-inflammatory properties. She also provides guidance on using turmeric in cooking and shares recipes featuring the spice.",
       Link: ""
     },
     {
       "id": 2,
       heading: "Response 2",
-      para: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, voluptatum!",
+      para: "Curcumin, the active ingredient in turmeric, possesses strong antioxidant and anti-inflammatory properties, which may help alleviate conditions like arthritis and improve overall health. It may also enhance brain function, support heart health, potentially influence cancer growth, and aid digestion. Overall, turmeric is linked to various health benefits that promote wellness.",
       Link: ""
     },
     {
       "id": 3,
       heading: "Response 3",
-      para: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, voluptatum!",
+      para: "Anti-inflammatory Effects: Curcumin can inhibit various molecules that play a role in inflammation, making it beneficial for conditions like arthritis and inflammatory bowel disease.",
       Link: ""
     },
 
   ]
+
 
   const handleChange = (e) => {
     const { value } = e.target
