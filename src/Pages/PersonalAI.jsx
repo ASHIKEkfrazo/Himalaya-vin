@@ -3,7 +3,6 @@ import { Input } from 'antd';
 import { ThreeCircles } from "react-loader-spinner"
 import { SmileOutlined, FilePdfOutlined } from "@ant-design/icons";
 import { useState, useEffect } from 'react';
-import { getChatData, postMessage } from '../Endpoints/personalAi';
 
 const Personal = () => {
 
@@ -12,7 +11,7 @@ const Personal = () => {
   const [chatData, setChatData] = useState([]);
   const [loading, setLoading] = useState(false)
 
- const chatResponseData = [
+  const chatResponseData = [
     {
       "id": 1,
       heading: "Response 1",
@@ -34,7 +33,6 @@ const Personal = () => {
 
   ]
 
-
   const handleChange = (e) => {
     const { value } = e.target
     setInputData(value)
@@ -46,53 +44,26 @@ const Personal = () => {
     setLoading(true)
     setChatData((prev) => [...prev, { inputData, chatResponseData: null }]);
 
-    postMessage(inputData).then((response) => {
-      console.log(response)
-      // setChatData((prev) => {
-      //   // Find the last added object (inputData only)
-      //   const updatedChatData = [...prev];
-      //   const lastIndex = updatedChatData.length - 1;
+    // After 2 seconds, update the same object with chatResponseData
+    setTimeout(() => {
+      setChatData((prev) => {
+        // Find the last added object (inputData only)
+        const updatedChatData = [...prev];
+        const lastIndex = updatedChatData.length - 1;
 
-      //   // Update the last object with chatResponseData
-      //   updatedChatData[lastIndex] = {
-      //     ...updatedChatData[lastIndex],
-      //     chatResponseData
-      //   };
+        // Update the last object with chatResponseData
+        updatedChatData[lastIndex] = {
+          ...updatedChatData[lastIndex],
+          chatResponseData
+        };
 
-      //   return updatedChatData;
-      // });
+        return updatedChatData;
+      });
 
       setLoading(false);
       setInputData(null);
-    }
-    ).catch(
-      (err) => console.log(err)
-    )
-
-
-
-    // // After 2 seconds, update the same object with chatResponseData
-    // setTimeout(() => {
-    //   setChatData((prev) => {
-    //     // Find the last added object (inputData only)
-    //     const updatedChatData = [...prev];
-    //     const lastIndex = updatedChatData.length - 1;
-
-    //     // Update the last object with chatResponseData
-    //     updatedChatData[lastIndex] = {
-    //       ...updatedChatData[lastIndex],
-    //       chatResponseData
-    //     };
-
-    //     return updatedChatData;
-    //   });
-
-    //   setLoading(false);
-    //   setInputData(null);
-    // }, 2000);
+    }, 2000);
   }
-
-
 
 
 
@@ -186,9 +157,9 @@ const Personal = () => {
                     <h6>How can i help you?</h6>
                     <p>Ask Questions</p>
                     <div className="flex gap-3">
-                      <p className='p-1 bg-gray-200 rounded-lg'>Lorem ipsum</p>
-                      <p className='p-1 bg-gray-200 rounded-lg'>Lorem ipsum</p>
-                      <p className='p-1 bg-gray-200 rounded-lg'>Lorem ipsum</p>
+                      <p className='p-1 bg-gray-200 rounded-lg'>Turmeric Health Benefits</p>
+                      <p className='p-1 bg-gray-200 rounded-lg'>Turmeric as antioxidants</p>
+                      <p className='p-1 bg-gray-200 rounded-lg'>What is Turmeric</p>
 
                     </div>
                   </div>
